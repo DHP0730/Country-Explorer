@@ -3,26 +3,22 @@ import { Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import logo from "../assets/bg01.jpg";
 import Profile from "./Profile";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
 
   const [showProfileDialog, setShowProfileDialog] = useState(false);
+  const navigate = useNavigate();
 
   const toggleProfileDialog = () => {
     setShowProfileDialog(!showProfileDialog);
   };
 
   const handleLogout = () => {
-    // Clear JWT token from storage
     localStorage.removeItem("token");
-  
-    // Redirect to login page
-    window.location.href = "/login";
-  
-    // Close the profile dialog
     setShowProfileDialog(false);
+    navigate("/login"); 
   };
-  
 
   return (
     <nav className="fixed w-full bg-neutral-900 text-white px-5 py-4 shadow-md z-50">
