@@ -25,7 +25,7 @@ function Home() {
 
     // Load favorites from DB
     if (token) {
-      axios.get('http://localhost:4000/api/favorites', {
+      axios.get(`${import.meta.env.VITE_API_URL}/api/favorites`, {
         headers: { Authorization: `Bearer ${token}` }
       }).then(res => setFavorites(res.data))
         .catch(err => console.error("Failed to load favorites:", err))
@@ -67,7 +67,7 @@ function Home() {
     
     if (exists) {
       try {
-        await axios.delete(`http://localhost:4000/api/favorites/${country.cca3}`, {
+        await axios.delete(`${import.meta.env.VITE_API_URL}/api/favorites/${country.cca3}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setFavorites(favorites.filter(fav => fav.cca3 !== country.cca3));
@@ -76,7 +76,7 @@ function Home() {
       }
     } else {
       try {
-        await axios.post(`http://localhost:4000/api/favorites`, country, {
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/favorites`, country, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setFavorites([...favorites, country]); // Update favorites in the state

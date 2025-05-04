@@ -21,7 +21,7 @@ function Favorites() {
 
   useEffect(() => {
     if (token) {
-      axios.get("http://localhost:4000/api/favorites", {
+      axios.get('${import.meta.env.VITE_API_URL}/api/favorites', {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then((res) => {
@@ -42,7 +42,7 @@ function Favorites() {
 
   const handleRemoveFavorite = async (countryToRemove) => {
     try {
-      await axios.delete(`http://localhost:4000/api/favorites/${countryToRemove.countryCode}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/favorites/${countryToRemove.countryCode}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setFavorites(favorites.filter((c) => c.countryCode !== countryToRemove.countryCode));
