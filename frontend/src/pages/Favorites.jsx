@@ -21,7 +21,7 @@ function Favorites() {
 
   useEffect(() => {
     if (token) {
-      axios.get('${import.meta.env.VITE_API_URL}/api/favorites', {
+      axios.get(`${import.meta.env.VITE_API_URL}/api/favorites`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then((res) => {
